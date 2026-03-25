@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 
-#define BLINK_DELAY		100	//ms
+#define BLINK_DELAY		1000	//ms
 
 void write_LED(bool b)
 {
@@ -78,12 +78,12 @@ int main(void)
 	while (1)
 	{
 
-		if( char_received(UART2_ID) )
-		{
-			write_LED(true);		/* write_LED? Faites un ctrl+clic dessus pour voir... */
-			HAL_Delay(BLINK_DELAY);	/* ... ça fonctionne aussi avec les macros, les variables. C'est votre nouveau meilleur ami */
-			write_LED(false);
-		}
+
+		write_LED(true);		/* write_LED? Faites un ctrl+clic dessus pour voir... */
+		HAL_Delay(BLINK_DELAY);	/* ... ça fonctionne aussi avec les macros, les variables. C'est votre nouveau meilleur ami */
+		write_LED(false);
+		HAL_Delay(BLINK_DELAY);
+
 
 	}
 }
