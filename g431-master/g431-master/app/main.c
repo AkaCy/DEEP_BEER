@@ -9,13 +9,12 @@
 
 #include "config.h"
 #include "stm32g4_sys.h"
-
 #include "stm32g4_systick.h"
 #include "stm32g4_gpio.h"
 #include "stm32g4_uart.h"
 #include "stm32g4_utils.h"
+#include "screen_manager.h"
 #include "button_handler.h"
-
 #include <stdio.h>
 
 
@@ -39,20 +38,19 @@ int main(void)
 	BSP_SYS_set_std_usart(UART2_ID, UART2_ID, UART2_ID);
 
 	button_handler_init();
+	screen_manager_init();
+
+	draw_glass();
 
 	printf("Init\n");
 
-	/* Initialisation du port de la led Verte (carte Nucleo) */
-	//BSP_GPIO_pin_config(LED_GREEN_GPIO, LED_GREEN_PIN, GPIO_MODE_OUTPUT_PP,GPIO_NOPULL,GPIO_SPEED_FREQ_HIGH,GPIO_NO_AF);
-
-
-	    while (1)
-	    {
-	        if (get_button_center_value())
-	        {
-	        	set_button_center_value(false);
-	            printf("The button. You pressed it... I came.\n");
-	        }
-	    }
+	while (1)
+	{
+		if (get_button_center_value())
+		{
+			set_button_center_value(false);
+			printf("The button. You pressed it... I came.\n");
+		}
+	}
 }
 

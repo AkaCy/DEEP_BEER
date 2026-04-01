@@ -1,3 +1,7 @@
+
+ 240x320 pixel pour l'écran
+
+
 void heartbeat(void)
 {
 	while(!char_received(UART2_ID) )
