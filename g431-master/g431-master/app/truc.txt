@@ -1,0 +1,31 @@
+void heartbeat(void)
+{
+	while(!char_received(UART2_ID) )
+	{
+		write_LED(true);
+		HAL_Delay(50);
+		write_LED(false);
+		HAL_Delay(1500);
+	}
+}
+
+
+bool char_received(uart_id_t uart_id)
+{
+	if( BSP_UART_data_ready(uart_id) )	/* Si un caractère est reçu sur l'UART 2*/
+	{
+		/* On "utilise" le caractère pour vider le buffer de réception */
+		BSP_UART_get_next_byte(uart_id);
+		return true;
+	}
+	else
+		return false;
+}
+
+void write_LED(bool b)
+{
+	HAL_GPIO_WritePin(LED_GREEN_GPIO, LED_GREEN_PIN, b);
+}
+
+
+#define BLINK_DELAY		100	//ms
