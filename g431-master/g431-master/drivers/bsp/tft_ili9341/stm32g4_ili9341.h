@@ -64,7 +64,7 @@
  */
 #ifndef ILI9341_WRX_PIN
 #define ILI9341_WRX_PORT      GPIOA
-#define ILI9341_WRX_PIN       GPIO_PIN_8
+#define ILI9341_WRX_PIN       GPIO_PIN_12
 #endif
 
 /**
@@ -99,6 +99,8 @@
 #define ILI9341_COLOR_MAGENTA		0xA254
 #define ILI9341_COLOR_GRAY			0x7BEF
 #define ILI9341_COLOR_BROWN			0xBBCA
+#define ILI9341_COLOR_BEER			0xD62D
+#define ILI9341_COLOR_GLASS			0xCE77
 
 /* Fond transparent uniquement pour string et char */
 #define ILI9341_TRANSPARENT			0x80000000
