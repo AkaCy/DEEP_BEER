@@ -1,5 +1,21 @@
 
  240x320 pixel pour l'écran
+ 
+ 
+  *		ILI9341_Orientation_Portrait_2
+ *
+ ** * * * * * * <-- pins
+ *O-------------O
+ *| +-----> x	|
+ *| |           |
+ *| |           |
+ *| !           |
+ *| y           |
+ *|             |
+ *|             |
+ *|             |
+ *O-------------O
+ * 
 
 
 void heartbeat(void)

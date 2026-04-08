@@ -27,14 +27,8 @@ void button_handler_init(void){
 /* Appelée périodiquement par SysTick (ex: toutes les 1 ms) */
 void process_button(void)
 {
-    static uint8_t prev_state = 1;         // pull-up: repos = 1
-
     uint8_t cur_state = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_4);
 
-    // Front descendant = appui
-    if (prev_state == 1 && cur_state == 0)
-    {
-		button_event = true;
-    }
-    prev_state = cur_state;
+		// Pull-up: appui = 0, repos = 1
+		button_event = (cur_state == 0);
 }

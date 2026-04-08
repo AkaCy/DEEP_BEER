@@ -10,7 +10,17 @@
 
 #include "tft_ili9341/stm32g4_ili9341.h"
 
+#define MAX_BEER_FILL_VALUE 245
+#define BOTTOM_BEER_X0 33
+#define BOTTOM_BEER_Y 279
+#define TOP_BEER_Y 30
+#define BOTTOM_BEER_X1 209
+
 void screen_manager_init(void);
 void draw_glass(void);
+void fill_beer(void);
+void empty_beer(void);
+
+static void check_x_values(void);
 
 #endif /* SCREEN_MANAGER_H_ */

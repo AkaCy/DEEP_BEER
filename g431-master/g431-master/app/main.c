@@ -46,11 +46,11 @@ int main(void)
 
 	while (1)
 	{
-		if (get_button_center_value())
-		{
+			if(get_button_center_value()){
+				fill_beer();
+			}
 			set_button_center_value(false);
-			printf("The button. You pressed it... I came.\n");
-		}
+
 	}
 }
 
