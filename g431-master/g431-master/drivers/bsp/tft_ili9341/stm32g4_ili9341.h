@@ -64,7 +64,7 @@
  */
 #ifndef ILI9341_WRX_PIN
 #define ILI9341_WRX_PORT      GPIOA
-#define ILI9341_WRX_PIN       GPIO_PIN_12
+#define ILI9341_WRX_PIN       GPIO_PIN_8
 #endif
 
 /**

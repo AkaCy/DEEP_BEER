@@ -153,7 +153,7 @@ void ILI9341_demo(void)
  * @brief  Cette fonction configure les broches nécessaires pour le contrôle
  *         de l'afficheur ILI9341, initialise le périphérique SPI utilisé pour
  *         communiquer avec l'afficheur et règle l'orientation par défaut de
- *         l'écran LCD. Elle remplit également l'écran avec une couleur blanche.
+ *         l'écran LCD. Elle remplit également l'écran avec une couleur noire.
  */
 void ILI9341_Init(void)
 {
@@ -163,9 +163,10 @@ void ILI9341_Init(void)
 	/* Init CS pin */
 	BSP_GPIO_pin_config(ILI9341_CS_PORT,ILI9341_CS_PIN, GPIO_MODE_OUTPUT_PP,GPIO_NOPULL,GPIO_SPEED_FREQ_MEDIUM, GPIO_NO_AF);
 	
-	#ifdef PIN_CS_TOUCH    /* Init CS Touchpad pin */
+	/*#ifdef PIN_CS_TOUCH    Init CS Touchpad pin
 		BSP_GPIO_pin_config(PIN_CS_TOUCH, GPIO_MODE_OUTPUT_PP,GPIO_PULLUP,GPIO_SPEED_FREQ_MEDIUM, GPIO_NO_AF);
 	#endif
+		*/
 
 	/* Init RST pin */
 	BSP_GPIO_pin_config(ILI9341_RST_PORT,ILI9341_RST_PIN, GPIO_MODE_OUTPUT_PP,GPIO_PULLUP,GPIO_SPEED_FREQ_LOW, GPIO_NO_AF);
