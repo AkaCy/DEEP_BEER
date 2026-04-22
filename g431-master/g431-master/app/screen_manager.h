@@ -21,6 +21,6 @@ void draw_glass(void);
 void fill_beer(void);
 void empty_beer(void);
 
-static void check_x_values(void);
+void check_x_values(void);
 
 #endif /* SCREEN_MANAGER_H_ */

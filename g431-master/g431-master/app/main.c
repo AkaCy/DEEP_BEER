@@ -14,6 +14,7 @@
 #include "stm32g4_uart.h"
 #include "stm32g4_utils.h"
 #include "screen_manager.h"
+#include "MPU6050/stm32g4_mpu6050.h"
 #include "button_handler.h"
 #include <stdio.h>
 
@@ -41,7 +42,12 @@ int main(void)
 	screen_manager_init();
 
 	draw_glass();
-
+	if (MPU6050_Init(&MPU6050_Data, GPIOA, GPIO_PIN_0, MPU6050_Device_0, MPU6050_Accelerometer_8G, MPU6050_Gyroscope_2000s) != MPU6050_Result_Ok) {
+		// Affiche error avec l'UART
+				printf("MPU6050 Error\n");
+				// Boucle infinie
+				while (1);
+	}
 	printf("Init\n");
 
 	while (1)

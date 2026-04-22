@@ -12,7 +12,7 @@ static volatile int beer_fill_level = 0;
 static volatile int beer_fill_x0 = BOTTOM_BEER_X0;
 static volatile int beer_fill_x1 = BOTTOM_BEER_X1;
 
-static void check_x_values(void)
+void check_x_values(void)
 {
 	// On transforme les intervalles en "paliers" pour rester compatible avec switch/case en C.
 	switch (beer_fill_level)
