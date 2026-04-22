@@ -38,17 +38,6 @@ int main(void)
 	/* Indique que les printf sont dirigés vers l'UART2 */
 	BSP_SYS_set_std_usart(UART2_ID, UART2_ID, UART2_ID);
 
-	button_handler_init();
-	screen_manager_init();
-
-	draw_glass();
-	if (MPU6050_Init(&MPU6050_Data, GPIOA, GPIO_PIN_0, MPU6050_Device_0, MPU6050_Accelerometer_8G, MPU6050_Gyroscope_2000s) != MPU6050_Result_Ok) {
-		// Affiche error avec l'UART
-				printf("MPU6050 Error\n");
-				// Boucle infinie
-				while (1);
-	}
-	printf("Init\n");
 
 	while (1)
 	{
