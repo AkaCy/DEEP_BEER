@@ -241,7 +241,7 @@ void MPU6050_demo(void){
 	int32_t gyro_z = 0;
 
 	/* Initialise le MPU6050 */
-	if (MPU6050_Init(&MPU6050_Data, GPIOA, GPIO_PIN_0, MPU6050_Device_0, MPU6050_Accelerometer_8G, MPU6050_Gyroscope_2000s) != MPU6050_Result_Ok) {
+	if (MPU6050_Init(&MPU6050_Data, GPIOA, GPIO_PIN_1, MPU6050_Device_0, MPU6050_Accelerometer_8G, MPU6050_Gyroscope_2000s) != MPU6050_Result_Ok) {
 		/*
 		// Affiche error avec le debug_printf
 		debug_printf("MPU6050 Error\n");

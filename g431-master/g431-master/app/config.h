@@ -53,7 +53,7 @@
 #define USE_WS2812			0 // Matrice de led
 
 /*------------------Capteurs------------------*/
-#define USE_MPU6050			0 // Acc�l�rom�tre, Gyroscope
+#define USE_MPU6050			1 // Acc�l�rom�tre, Gyroscope
 #define USE_APDS9960		0 // Capteur de mouvements, pr�sence, couleurs
 #define USE_BMP180			0 // Capteur de pression atmosph�rique
 #define USE_BH1750FVI		0 // Capteur de luminosit� ambiante
@@ -89,7 +89,7 @@
 	#define USE_I2C				1
 #else
 	#ifndef USE_I2C
-		#define USE_I2C				0
+		#define USE_I2C				1
 	#endif
 #endif
 #define I2C_TIMEOUT			5//ms

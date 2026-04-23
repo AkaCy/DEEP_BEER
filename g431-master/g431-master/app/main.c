@@ -13,8 +13,7 @@
 #include "stm32g4_gpio.h"
 #include "stm32g4_uart.h"
 #include "stm32g4_utils.h"
-#include "screen_manager.h"
-#include "button_handler.h"
+#include "state_machine.h"
 #include <stdio.h>
 
 
@@ -37,20 +36,18 @@ int main(void)
 	/* Indique que les printf sont dirigés vers l'UART2 */
 	BSP_SYS_set_std_usart(UART2_ID, UART2_ID, UART2_ID);
 
-	button_handler_init();
-	screen_manager_init();
-
-	draw_glass();
-
-	printf("Init\n");
+	//MPU6050_demo();
 
 	while (1)
 	{
-			if(get_button_center_value()){
-				fill_beer();
-			}
-			set_button_center_value(false);
-
+		state_machine();
 	}
 }
+
+/*
+ * if(get_button_center_value()){
+		fill_beer();
+	}
+	set_button_center_value(false);
+*/
 
