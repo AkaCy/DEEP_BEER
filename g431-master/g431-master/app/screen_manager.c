@@ -7,7 +7,7 @@
 
 #include "screen_manager.h"
 
-static volatile int beer_fill_level = 0;
+int beer_fill_level = 0;
 
 static volatile int beer_fill_x0 = BOTTOM_BEER_X0;
 static volatile int beer_fill_x1 = BOTTOM_BEER_X1;
@@ -50,15 +50,16 @@ void check_x_values(void)
 	case 228:
 		beer_fill_x0--;
 		break;
-	case MAX_BEER_FILL_VALUE:
-		beer_fill_x0 = BOTTOM_BEER_X0;
-		beer_fill_x1 = BOTTOM_BEER_X1;
-		beer_fill_level = 0;
-		empty_beer();
-		break;
 	default:
 		break;
 	}
+}
+
+extern void reset_beer(){
+	beer_fill_x0 = BOTTOM_BEER_X0;
+	beer_fill_x1 = BOTTOM_BEER_X1;
+	beer_fill_level = 0;
+	empty_beer();
 }
 
 void empty_beer(){
@@ -82,10 +83,8 @@ void draw_glass(){
 }
 
 void fill_beer(){
-	if (beer_fill_level <= MAX_BEER_FILL_VALUE){
-		check_x_values();
-		ILI9341_DrawLine(beer_fill_x0,BOTTOM_BEER_Y-beer_fill_level,beer_fill_x1,BOTTOM_BEER_Y-beer_fill_level,ILI9341_COLOR_BEER);
-		beer_fill_level ++;
-	}
+	check_x_values();
+	ILI9341_DrawLine(beer_fill_x0,BOTTOM_BEER_Y-beer_fill_level,beer_fill_x1,BOTTOM_BEER_Y-beer_fill_level,ILI9341_COLOR_BEER);
+	beer_fill_level ++;
 }
 

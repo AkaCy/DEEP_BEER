@@ -16,6 +16,9 @@
 #define TOP_BEER_Y 30
 #define BOTTOM_BEER_X1 209
 
+extern int beer_fill_level;
+extern void reset_beer(void);
+
 void screen_manager_init(void);
 void draw_glass(void);
 void fill_beer(void);
