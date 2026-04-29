@@ -9,6 +9,7 @@
 #define SCREEN_MANAGER_H_
 
 #include "tft_ili9341/stm32g4_ili9341.h"
+#include <stdbool.h>
 
 #define MAX_BEER_FILL_VALUE 245
 #define BOTTOM_BEER_X0 33
@@ -22,8 +23,9 @@ extern void reset_beer(void);
 void screen_manager_init(void);
 void draw_glass(void);
 void fill_beer(void);
+void drain_beer(void);
 void empty_beer(void);
 
-void check_x_values(void);
+void check_x_values(bool fill);
 
 #endif /* SCREEN_MANAGER_H_ */

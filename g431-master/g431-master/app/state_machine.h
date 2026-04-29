@@ -12,6 +12,7 @@
 #include "screen_manager.h"
 #include "MPU6050/stm32g4_mpu6050.h"
 #include "button_handler.h"
+#include <stdio.h>
 
 typedef enum
 	{

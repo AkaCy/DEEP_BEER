@@ -12,43 +12,87 @@ int beer_fill_level = 0;
 static volatile int beer_fill_x0 = BOTTOM_BEER_X0;
 static volatile int beer_fill_x1 = BOTTOM_BEER_X1;
 
-void check_x_values(void)
+void check_x_values(bool fill)
 {
 	// On transforme les intervalles en "paliers" pour rester compatible avec switch/case en C.
 	switch (beer_fill_level)
 	{
 	case 20:
-		beer_fill_x0--;
+		if (fill){
+			beer_fill_x0--;
+		} else {
+			beer_fill_x0++;
+		}
 		break;
 	case 25:
-		beer_fill_x1++;
+		if (fill){
+			beer_fill_x1++;
+		} else {
+			beer_fill_x1--;
+		}
 		break;
 	case 62:
-		beer_fill_x0--;
+		if (fill){
+			beer_fill_x0--;
+		} else {
+			beer_fill_x0++;
+		}
 		break;
 	case 67:
-		beer_fill_x1++;
+		if (fill){
+			beer_fill_x1++;
+		} else {
+			beer_fill_x1--;
+		}
 		break;
 	case 104:
-		beer_fill_x0--;
+		if (fill){
+			beer_fill_x0--;
+		} else {
+			beer_fill_x0++;
+		}
 		break;
 	case 125:
-		beer_fill_x1++;
+		if (fill){
+			beer_fill_x1++;
+		} else {
+			beer_fill_x1--;
+		}
 		break;
 	case 175:
-		beer_fill_x1++;
+		if (fill){
+			beer_fill_x1++;
+		} else {
+			beer_fill_x1--;
+		}
 		break;
 	case 180:
-		beer_fill_x0--;
+		if (fill){
+			beer_fill_x0--;
+		} else {
+			beer_fill_x0++;
+		}
 		break;
 	case 144:
-		beer_fill_x0--;
+		if (fill){
+			beer_fill_x0--;
+		} else {
+			beer_fill_x0++;
+		}
 		break;
 	case 225:
+		if (fill){
 			beer_fill_x1++;
+		} else {
+			beer_fill_x1--;
+		}
 			break;
 	case 228:
-		beer_fill_x0--;
+		if (fill){
+			beer_fill_x0--;
+		} else {
+			beer_fill_x0++;
+		}
 		break;
 	default:
 		break;
@@ -83,8 +127,29 @@ void draw_glass(){
 }
 
 void fill_beer(){
-	check_x_values();
+	if (beer_fill_level >= MAX_BEER_FILL_VALUE){
+		return;
+	}
+
+	check_x_values(true);
 	ILI9341_DrawLine(beer_fill_x0,BOTTOM_BEER_Y-beer_fill_level,beer_fill_x1,BOTTOM_BEER_Y-beer_fill_level,ILI9341_COLOR_BEER);
 	beer_fill_level ++;
+}
+
+void drain_beer(){
+	if (beer_fill_level <= 0){
+		return;
+	}
+	if (beer_fill_level == 10){
+			for (int i = 0; i<10 ; i++){
+				check_x_values(false);
+				ILI9341_DrawLine(beer_fill_x0,BOTTOM_BEER_Y-beer_fill_level,beer_fill_x1,BOTTOM_BEER_Y-beer_fill_level,ILI9341_COLOR_BLACK);
+				beer_fill_level --;
+			}
+		}
+
+	check_x_values(false);
+	ILI9341_DrawLine(beer_fill_x0,BOTTOM_BEER_Y-beer_fill_level,beer_fill_x1,BOTTOM_BEER_Y-beer_fill_level,ILI9341_COLOR_BLACK);
+	beer_fill_level --;
 }
 
