@@ -277,9 +277,9 @@ void MPU6050_demo(void){
 		*/
 		 // Affiche avec l'UART
 		 printf("AX%4d\tAY%4d\tAZ%4d\tGX%4d\tGY%4d\tGZ%4d\tgx%4ld\tgy%4ld\tgz%4ld\tT%3d\n",
-					    (int16_t)MPU6050_Data.Accelerometer_X/410,	//environ en %
-					    (int16_t)MPU6050_Data.Accelerometer_Y/410,	//environ en %
-					    (int16_t)MPU6050_Data.Accelerometer_Z/410,	//environ en %
+					    (int16_t)MPU6050_Data.Accelerometer_X,	//environ en %
+					    (int16_t)MPU6050_Data.Accelerometer_Y,	//environ en %
+					    (int16_t)MPU6050_Data.Accelerometer_Z,	//environ en %
 					    (int16_t)MPU6050_Data.Gyroscope_X,
 					    (int16_t)MPU6050_Data.Gyroscope_Y,
 					    (int16_t)MPU6050_Data.Gyroscope_Z,

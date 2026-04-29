@@ -14,6 +14,8 @@
 #include "button_handler.h"
 #include <stdio.h>
 
+#define DELAY_BEER 20 //40
+
 typedef enum
 	{
 		INIT,

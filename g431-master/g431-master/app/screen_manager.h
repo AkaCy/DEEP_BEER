@@ -12,6 +12,7 @@
 #include <stdbool.h>
 
 #define MAX_BEER_FILL_VALUE 245
+#define DELAY_BEER 20
 #define BOTTOM_BEER_X0 33
 #define BOTTOM_BEER_Y 279
 #define TOP_BEER_Y 30

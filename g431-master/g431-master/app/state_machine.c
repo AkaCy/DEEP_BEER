@@ -10,12 +10,23 @@
 #include "state_machine.h"
 #include "stm32g4xx.h"
 #include "stm32g4_gpio.h"
-static int32_t gyro_x = 0;
-static int32_t gyro_y = 0;
-static int32_t gyro_z = 0;
+static int32_t acc_x = 0;
+static int32_t acc_y = 0;
+static int32_t acc_z = 0;
+const int16_t RESET_THRESHOLD = 1200;
 
-const int16_t reset_threshold = 1000;
-const int8_t delay_beer = 20; //40
+
+/*
+void calibrate_z_offset(MPU6050_t *MPU6050_Data){
+	// calculer la dérive du MPU6050 pour axe Z non fonctionnel
+	int16_t sum = 0;
+	for (int i=0;i<50;i++){
+		MPU6050_ReadAll(&MPU6050_Data);
+		sum += MPU6050_Data.Gyroscope_Z;
+	}
+	gyro_z_offset = (int32_t)sum/50;
+
+}*/
 
 
 void state_machine(void)
@@ -38,23 +49,26 @@ void state_machine(void)
 				// Boucle infinie
 				while (1);
 			}
+			//calibrate_z_offset(&MPU6050_Data);
 			printf("Init\n");
 			state = WAITING_STATE;
 			break;
 		case WAITING_STATE:
 			MPU6050_ReadAll(&MPU6050_Data);
-			gyro_z +=MPU6050_Data.Gyroscope_Z;
+			acc_z=MPU6050_Data.Accelerometer_Z;
+			acc_x=MPU6050_Data.Accelerometer_X;
+			acc_y=MPU6050_Data.Accelerometer_Y;
 			if(get_button_center_value()){
 				if(beer_fill_level < MAX_BEER_FILL_VALUE){
 					state = FILLING_STATE;
 				}
-			} else if( gyro_z > reset_threshold) {
+			} else if( acc_x > RESET_THRESHOLD || acc_x < -RESET_THRESHOLD) {
 				state = DRAINING_STATE;
 			}
 			break;
 		case FILLING_STATE:
 			fill_beer();
-			HAL_Delay(delay_beer);
+			HAL_Delay(DELAY_BEER);
 			//HAL_Delay(40);
 			state = WAITING_STATE;
 			break;
@@ -65,10 +79,12 @@ void state_machine(void)
 			}
 			do{
 				MPU6050_ReadAll(&MPU6050_Data);
-				gyro_z +=MPU6050_Data.Gyroscope_Z;
+				acc_z=MPU6050_Data.Accelerometer_Z;
+				acc_x=MPU6050_Data.Accelerometer_X;
+				acc_y=MPU6050_Data.Accelerometer_Y;
 				drain_beer();
-				HAL_Delay(delay_beer);
-			} while(abs(gyro_z) > reset_threshold && beer_fill_level>9);
+				HAL_Delay(DELAY_BEER);
+			} while((acc_x > RESET_THRESHOLD || acc_x < -RESET_THRESHOLD) && beer_fill_level>9);
 			printf("End Draining\n");
 			state = WAITING_STATE;
 

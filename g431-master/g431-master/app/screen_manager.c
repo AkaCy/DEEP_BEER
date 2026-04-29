@@ -145,6 +145,7 @@ void drain_beer(){
 				check_x_values(false);
 				ILI9341_DrawLine(beer_fill_x0,BOTTOM_BEER_Y-beer_fill_level,beer_fill_x1,BOTTOM_BEER_Y-beer_fill_level,ILI9341_COLOR_BLACK);
 				beer_fill_level --;
+				HAL_Delay(DELAY_BEER);
 			}
 		}
 
